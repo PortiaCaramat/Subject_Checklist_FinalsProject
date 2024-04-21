@@ -7,7 +7,10 @@ public class FileToCourses {
 	BufferedReader br;
 	static ArrayList<Course> courses = new ArrayList<>();
 
-	FileToCourses(String fileName) throws FileNotFoundException {
+	FileToCourses(String fileName) throws IOException {
+		//check if input file is a tsv
+		if (!isTSV(fileName)) throw new IOException("File is not tsv");
+
 		fr = new FileReader(fileName);
 		br = new BufferedReader(fr);
 
@@ -20,8 +23,6 @@ public class FileToCourses {
  		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-
-
 	}
 
 	private static Course extractToCourse(String[] data) {
@@ -29,6 +30,13 @@ public class FileToCourses {
 		String title = data[1];
 		int units = Integer.parseInt(data[2]);
 		return new Course(title, code, units, false);
+	}
+
+	private boolean isTSV(String fileName) {
+		if (fileName == null) throw new NullPointerException("File cannot be null");
+		int dotIndex = fileName.indexOf(".");
+
+		return fileName.substring(dotIndex).equalsIgnoreCase("tsv");
 	}
 
 	public void printCourses() {
