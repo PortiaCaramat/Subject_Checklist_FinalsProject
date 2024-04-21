@@ -9,7 +9,7 @@ public class FileToCourses {
 
 	FileToCourses(String fileName) throws IOException {
 		//check if input file is a tsv
-		if (!isTSV(fileName)) throw new IOException("File is not tsv");
+		if (isTSV(fileName)) throw new IOException("File is not tsv");
 
 		fr = new FileReader(fileName);
 		br = new BufferedReader(fr);
