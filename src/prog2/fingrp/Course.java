@@ -15,6 +15,14 @@ public class Course {
 		this.complete = false;
 	}
 
+	public Course(String title, String code, int units, boolean complete) {
+		this.title = title;
+		this.code = code;
+		this.unit = units;
+		this.grade = 0.0;
+		this.complete = complete;
+	}
+
 	public Course(String title, String code, int units, double grade, boolean complete) {
 		this.title = title;
 		this.code = code;
