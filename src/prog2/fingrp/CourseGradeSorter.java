@@ -1,4 +1,4 @@
-package prog2.finalgroup;
+package prog2.fingrp;
 
 public class CourseGradeSorter extends Course implements Comparable<Course>{
     @Override

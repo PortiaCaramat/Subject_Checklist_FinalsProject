@@ -2,7 +2,7 @@ package prog2.fingrp;
 
 import java.io.Serializable;
 
-public class Course implements Serializable {
+public class Course implements Serializable{
 	private String title;
 	private String code;
 	private int unit;

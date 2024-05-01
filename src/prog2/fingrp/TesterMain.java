@@ -1,4 +1,4 @@
-package prog2.finalgroup;
+package prog2.fingrp;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,10 +8,12 @@ import java.io.BufferedReader;
 import java.util.Collections;
 import java.util.Scanner;
 
+//delete later
+@Deprecated
 public class TesterMain {
     public static void main(String[] args) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Msi\\Downloads\\courses.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\prog2\\fingrp\\courses.txt"));
             String[] courseString = new String[10];
             String ln = "line";
             int i = 0;
@@ -30,26 +32,30 @@ public class TesterMain {
                 case 1 : ArrayList<Course> courses1 = new ArrayList<>();
                         for (String s : courseString) {
                             String[] arrOfStr = s.split("\t", 3);
-                            String code = arrOfStr[0];
-                            String title = arrOfStr[1];
+                            String title = arrOfStr[0];
+                            String code = arrOfStr[1];
                             int units = Integer.parseInt(arrOfStr[2]);
                             courses1.add(new Course(code, title, units));
                         }
+
                         for (Course sortedCourses : courses1) {
                             System.out.println(sortedCourses.toString());
+                            System.out.println();
                         }
                         break;
-                case 2 : ArrayList<CourseNameSorter> courses2 = new ArrayList<>();
+
+                case 2 : ArrayList<Course> courses2 = new ArrayList<>();
                             for (String s : courseString) {
                                 String[] arrOfStr = s.split("\t", 3);
-                                String code = arrOfStr[0];
-                                String title = arrOfStr[1];
+                                String title = arrOfStr[0];
+                                String code = arrOfStr[1];
                                 int units = Integer.parseInt(arrOfStr[2]);
-                                courses2.add(new CourseNameSorter(code, title, units));
+                                courses2.add(new Course(code, title, units));
                             }
-                        Collections.sort(courses2);
+                        //Collections.sort(courses2);
                         for (Course sortedCourses : courses2) {
                             System.out.println(sortedCourses.toString());
+                            System.out.println();
                         }
                     break;
             }

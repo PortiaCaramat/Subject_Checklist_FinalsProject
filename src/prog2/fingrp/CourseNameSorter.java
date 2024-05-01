@@ -1,13 +1,13 @@
-package prog2.finalgroup;
+package prog2.fingrp;
 
+//delete later
+@Deprecated
 public class CourseNameSorter extends Course implements Comparable<Course>{
-    public CourseNameSorter(String code, String title, int units){
-        super(code, title, units);
-    }
     @Override
     public int compareTo(Course other) {
-        return (this.getTitle().compareTo(other.getTitle()));
+        return (this.getTitle().compareTo(other.getTitle())); //no point in having this when the String class has one
     }
+
     public String toString () {
         return super.toString();
     }
