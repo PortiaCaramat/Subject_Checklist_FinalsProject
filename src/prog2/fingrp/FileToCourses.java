@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public class FileToCourses {
 	FileReader fr;
 	BufferedReader br;
-	static ArrayList<Course> courses = new ArrayList<>();
+	final private String fileName;
+
 
 	FileToCourses(String fileName) throws IOException {
-		//check if input file is a tsv
-		if (!isTSV(fileName)) throw new IOException("File is not tsv");
+		this.fileName = fileName;
+	}
+
+	public ArrayList<Course> toCourse() throws IOException{
+		ArrayList<Course> courses = new ArrayList<>();
 
 		fr = new FileReader(fileName);
 		br = new BufferedReader(fr);
@@ -20,29 +24,18 @@ public class FileToCourses {
 				String[] courseString = line.split("\t");
 				courses.add(extractToCourse(courseString));
 			}
- 		} catch (IOException e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+
+		return courses;
 	}
 
 	private static Course extractToCourse(String[] data) {
 		String code = data[0];
 		String title = data[1];
 		int units = Integer.parseInt(data[2]);
-		return new Course(title, code, units, false);
+		return new Course(title, code, units);
 	}
 
-	private boolean isTSV(String fileName) {
-		if (fileName == null) throw new NullPointerException("File cannot be null");
-		int dotIndex = fileName.indexOf(".");
-
-		return fileName.substring(dotIndex).equalsIgnoreCase("tsv");
-	}
-
-	public void printCourses() {
-		for(Course c : courses) {
-			System.out.println(c);
-			System.out.println();
-		}
-	}
 }

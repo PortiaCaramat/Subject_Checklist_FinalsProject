@@ -1,6 +1,8 @@
 package prog2.fingrp;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
 	private String title;
 	private String code;
 	private int unit;
@@ -8,27 +10,27 @@ public class Course {
 	private boolean complete;
 
 	public Course() {
-		this.title = null;
-		this.code = null;
-		this.unit = 0;
-		this.grade = 0.0;
-		this.complete = false;
+		title = null;
+		code = null;
+		unit = 0;
+		grade = 0.0;
+		complete = false;
 	}
 
-	public Course(String title, String code, int units, boolean complete) {
+	public Course(String title, String code, int units) {
 		this.title = title;
 		this.code = code;
 		this.unit = units;
 		this.grade = 0.0;
-		this.complete = complete;
+		complete = false; // if grade is not given, assume that course is incomplete
 	}
 
-	public Course(String title, String code, int units, double grade, boolean complete) {
+	public Course(String title, String code, int units, double grade) {
 		this.title = title;
 		this.code = code;
 		this.unit = units;
 		this.grade = grade;
-		this.complete = complete;
+		complete = true; // if grade is given, assume that course is complete
 	}
 
 
@@ -56,7 +58,6 @@ public class Course {
 
 	//getters
 
-
 	public String getTitle() {
 		return title;
 	}
@@ -77,12 +78,14 @@ public class Course {
 		return complete;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Course title= " + title +
 				"\nCourse Code= "+ code +
 				"\nUnits= " + unit +
-				"\nGrade= " + grade +
+				"\nGrade=" + grade +
 				"\nComplete?= " + complete;
+
 	}
 }
