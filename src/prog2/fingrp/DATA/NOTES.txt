@@ -1,0 +1,6 @@
+NOTES:
+    - All .tsv files in the DATA folder are there to know what is inside their respective .dat files
+    - It is also a way to handle situations in case something goes wrong with the .dat files
+         + Just split the lines to a String array, convert it to a Course, add to an ArrayList and write it to a .dat file
+            with the write method from the DatReadWrite class.
+    - When it comes to the presentation, it is recommended to delete the tsv files
