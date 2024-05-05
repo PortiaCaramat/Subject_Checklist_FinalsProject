@@ -1,0 +1,27 @@
+.loginScreen{
+    -fx-background-color: linear-gradient( to right top, #6699CC, #003B6D);
+    -fx-background-radius: 30 0 0 30;
+}
+.loginTextFields{
+    -fx-background-color: #EBEDF3;
+    -fx-background-radius: 0 30 30 0;
+}
+.loginButton{
+    -fx-background-color: linear-gradient( to top, #BDBDBD, #EBEDF3, #BDBDBD);
+    -fx-text-fill: #676767;
+}
+.profile-layout{
+    -fx-background-color: linear-gradient( to left top,#6699CC, #003B6D);
+}
+.user-name-layout{
+    -fx-text-fill: #EBEDf3;
+}
+.button-layout{
+    -fx-font: 28px;
+    -fx-text-fill: #676767;
+    -fx-content-display: left;
+    -fx-background-color: #EBEDf3;
+}
+.header-layout{
+    -fx-background-color: linear-gradient( to right,#EBEDF3, #EBEDF3, #BDBDBD);
+}
