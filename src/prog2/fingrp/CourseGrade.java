@@ -1,17 +1,21 @@
-package prog2.ProjSample;
+package prog2.fingrp;
+
+import java.io.Serializable;
 
 // still needs modifications
-public class CourseGrade extends Course{
+public class CourseGrade extends Course implements Serializable {
     private int grade;
+
 
     public CourseGrade(){
         super(1,1, "","",1);
         grade=0;
+
     }
 
     public CourseGrade(int year,int term,String code,String title,int unit, int grade){
         super(year, term, code, title, unit);
-        this.grade= grade;
+        this.grade = grade;
     }
 
     public void setGrade(int grade) {

@@ -1,9 +1,10 @@
-package prog2.ProjSample;
+package prog2.fingrp;
+
+import java.io.Serializable;
 
 import static java.lang.String.format;
 
-public class Course {
-
+public class Course implements Serializable {
 	private int year;
 	private int term;
 	private String title;
