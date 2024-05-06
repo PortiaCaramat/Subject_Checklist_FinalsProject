@@ -29,7 +29,7 @@ public class  GUI extends JFrame {
             DatReadWrite<CourseGrade> persCourse = new DatReadWrite<>();
 
             try {
-                List<CourseGrade> courses = persCourse.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat"); //changed coursesCurriculum to Curriculum.dat file path
+                List<Course> courses = courseRead.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat"); //changed coursesCurriculum to Curriculum.dat file path
                 Scanner scanner = new Scanner(System.in);
                 System.out.print("Course Curriculum \n");
                 System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
