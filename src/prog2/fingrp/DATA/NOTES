@@ -1,0 +1,10 @@
+NOTES:
+
+    Curriculum.dat is non-modifiable.
+    Modify CurriculumPersonal.dat to save data from the GUI.
+
+    Ezekial
+        Do:
+         -Implementation of sorting courses alphabetically (streams or methods)
+         -Create method to compute GPA. (bahala ka na diyan)
+
