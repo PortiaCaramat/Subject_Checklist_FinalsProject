@@ -10,138 +10,172 @@ import java.util.List;
 public class
 GUI extends JFrame {
 
-        public static String intToString (int term)  {
-                switch (term) {
-                    case 1:
-                        return "First Semester";
-					case 2:
-                        return "Second Semester";
-                    case 3:
-                        return "Short Term";
-                    default:
-                        return "how?";
-                }
+    public static String intToString(int term) {
+        switch (term) {
+            case 1:
+                return "First Semester";
+            case 2:
+                return "Second Semester";
+            case 3:
+                return "Short Term";
+            default:
+                return "how?";
         }
+    }
 
 
-        // For reference only
-        public void showCurriculum() {
-            DatReadWrite<Course> courseRead = new DatReadWrite<>();
-            DatReadWrite<CourseGrade> persCourse = new DatReadWrite<>();
+    // For reference only
+    public void showCurriculum() {
+        DatReadWrite<Course> courseRead = new DatReadWrite<>();
+        DatReadWrite<CourseGrade> persCourse = new DatReadWrite<>();
 
-            try {
-                List<Course> courses = courseRead.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat"); //changed coursesCurriculum to Curriculum.dat file path
-                Scanner scanner = new Scanner(System.in);
-                System.out.print("Course Curriculum \n");
-                System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.printf("%-20s%-100s%n", "Year = 1", "Term = First Semester");
-                System.out.printf("%-20s%-100s%-20s%n", "Course number", "Descriptive title", "Units");
-                System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.println(courses.get(0));
+        try {
+            List<Course> courses = courseRead.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat"); //changed coursesCurriculum to Curriculum.dat file path
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Course Curriculum \n");
+            System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
+            System.out.printf("%-20s%-100s%n", "Year = 1", "Term = First Semester");
+            System.out.printf("%-20s%-100s%-20s%n", "Course number", "Descriptive title", "Units");
+            System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
+            System.out.println(courses.get(0));
 
-                for (int i = 1; i < courses.size(); i++) {
-                    if (courses.get(i).getTerm() != (courses.get(i - 1).getTerm())) {
-                        System.out.println("Press Enter to continue...");
-                        scanner.nextLine(); // Wait for user to press Enter
+            for (int i = 1; i < courses.size(); i++) {
+                if (courses.get(i).getTerm() != (courses.get(i - 1).getTerm())) {
+                    System.out.println("Press Enter to continue...");
+                    scanner.nextLine(); // Wait for user to press Enter
 
-                        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------");
-                        System.out.printf("%-20s%-100s%n", "Year = " + courses.get(i).getYear(), "Term = " + intToString(courses.get(i).getTerm()));
-                        System.out.printf("%-20s%-100s%-20s%n", "Course number", "Descriptive title", "Units");
-                        System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                    }
-                    System.out.println(courses.get(i));
+                    System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------");
+                    System.out.printf("%-20s%-100s%n", "Year = " + courses.get(i).getYear(), "Term = " + intToString(courses.get(i).getTerm()));
+                    System.out.printf("%-20s%-100s%-20s%n", "Course number", "Descriptive title", "Units");
+                    System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 }
-                scanner.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                System.out.println(courses.get(i));
             }
+            scanner.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+    }
 
-        public void displayAlphabetically(){
-            DatReadWrite<Course> courseRead = new DatReadWrite<>();
-            DatReadWrite<CourseGrade> persCourse = new DatReadWrite<>();
+    public void displayAlphabetically() {
+        DatReadWrite<Course> courseRead = new DatReadWrite<>();
+        DatReadWrite<CourseGrade> persCourse = new DatReadWrite<>();
 
-            try {
-                List<Course> courses = courseRead.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat");
+        try {
+            List<Course> courses = courseRead.read("src\\prog2\\fingrp\\DATA\\Curriculum.dat");
 
-                // Sort the courses alphabetically by descriptive title
-                Collections.sort(courses, Comparator.comparing(Course::getTitle));
+            //sorting the course titles alphabetically
+            Collections.sort(courses, Comparator.comparing(Course::getTitle));
 
-                Scanner scanner = new Scanner(System.in);
-                System.out.print("Display courses in alphabetical order \n");
-                System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                System.out.println(courses.get(0));
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Display courses in alphabetical order \n");
+            System.out.print("-------------------------------------------------------------------------------------------------------------------------------------------------\n");
+            System.out.println(courses.get(0));
 
-                for (int i = 1; i < courses.size(); i++) {
-                    if (courses.get(i).getTerm() != (courses.get(i - 1).getTerm())) {
-                    }
-                    System.out.println(courses.get(i));
+            for (int i = 1; i < courses.size(); i++) {
+                if (courses.get(i).getTerm() != (courses.get(i - 1).getTerm())) {
                 }
-
-                scanner.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                System.out.println(courses.get(i));
             }
+
+            scanner.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+    }
 
-        public void displayHighToLow(){
+    public void displayHighToLow() {
+        DatReadWrite<CourseGrade> courseGradeRead = new DatReadWrite<>();
 
-        }
+        try {
+            List<CourseGrade> courseGrades = courseGradeRead.read("src\\prog2\\fingrp\\DATA\\CourseGrade.dat");
 
-        public GUI() {
-            //empty lmao
-        }
+            // Sort the courses by highest to lowest grades
+            Collections.sort(courseGrades, new Comparator<CourseGrade>() {
+                @Override
+                public int compare(CourseGrade course1, CourseGrade course2) {
+                    try {
+                        double grade1 = Double.parseDouble(course1.getGrade());
+                        double grade2 = Double.parseDouble(course2.getGrade());
 
-        public static void main(String[] args) {
-            try {
-                GUI program = new GUI();
-
-                Scanner kbd = new Scanner(System.in);
-                int choice = kbd.nextInt();
-
-                switch (choice) {
-                    case 1:
-                        program.showCurriculum();
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-
-                        break;
-                    case 5:
-
-                        break;
-                    case 6:
-
-                        break;
-                    case 7:
-                        program.displayAlphabetically();
-                        break;
-                    case 8:
-
-                        break;
-                    case 9:
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
-                        break;
+                        return Double.compare(grade2, grade1);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        return 0;
+                    }
                 }
-            } catch (InputMismatchException e){
-                System.out.println("Invalid input. Please enter  valid number");
-            } catch Exception e();
+            });
+
+            // Print the sorted courses
+            for (CourseGrade courseGrade : courseGrades) {
+                System.out.println(courseGrade);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public GUI() {
+        //empty lmao
+    }
+
+    public static void main(String[] args) {
+        try {
+            GUI program = new GUI();
+
+            Scanner kbd = new Scanner(System.in);
+            int choice = kbd.nextInt();
+
+            switch (choice) {
+                case 1:
+                    program.showCurriculum();
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+                    program.displayAlphabetically();
+                    break;
+                case 8:
+                    program.displayHighToLow();
+
+                    break;
+                case 9:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter  valid number");
+        } catch (Exception e) {
             System.out.println("An error occurred" + e.getMessage());
             e.printStackTrace();
         }
+    }
 }
+
 
 
 
